@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/test3",
+    "bodyPatterns" : [
+    "bodyFileName": "test.xml"
+      ]
+  },
+  "response": {
+    "status": 200
+  }
+}
