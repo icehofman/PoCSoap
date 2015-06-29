@@ -3,7 +3,7 @@
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
-import spock.lang.Specification
+import spock.lang.*
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig
@@ -22,6 +22,16 @@ class WireMocking extends Specification {
 
   def "Test01"() {
     when:
+    String html = 'http://localhost:8089/test'.toURL().text
+
+    then:
+    println html
+    assert 'WireMock!' == html
+
+  }
+
+  def "Test02"() {
+    when:
     wireMock.register(get(urlEqualTo("/test2"))
     .willReturn(aResponse()
     .withStatus(200)
@@ -29,6 +39,9 @@ class WireMocking extends Specification {
     ))
 
     then:
-    println wireMock
+    String html = 'http://localhost:8089/test2'.toURL().text
+    println html
+    assert 'test02' == html
+
   }
 }
